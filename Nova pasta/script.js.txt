@@ -1,0 +1,38 @@
+function calcularResultado() {
+    // Obtenha todas as respostas
+    var respostas = document.querySelectorAll('input[type=radio]:checked');
+    
+    // Verifique se todas as perguntas foram respondidas
+    if (respostas.length !== 40) {
+        alert('Por favor, responda todas as perguntas.');
+        return;
+    }
+
+    // Calcule o número de "sim" e "não"
+    var simCount = 0;
+    var naoCount = 0;
+
+    respostas.forEach(function (resposta) {
+        if (resposta.value === 'sim') {
+            simCount++;
+        } else {
+            naoCount++;
+        }
+    });
+
+    // Determine o resultado com base nas contagens
+    var resultado = '';
+
+    if (simCount >= 30) {
+        resultado = 'Resultado 1: Sua saúde mental pode precisar de atenção.';
+    } else if (simCount >= 20) {
+        resultado = 'Resultado 2: Sua saúde mental está razoável, mas considere cuidados adicionais.';
+    } else {
+        resultado = 'Resultado 3: Sua saúde mental está boa. Continue assim!';
+    }
+
+    // Exiba o resultado
+    var resultadoDiv = document.getElementById('resultado');
+    resultadoDiv.innerHTML = '<h2>Resultado:</h2>' + resultado;
+    resultadoDiv.style.display = 'block';
+}
